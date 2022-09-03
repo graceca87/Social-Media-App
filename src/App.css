@@ -1,3 +1,21 @@
-.root {
-    background: "#f2e1cf",
-    };
+.App-header {
+  background-color: #E1EFF6;
+  min-height: 100vh;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* justify-content: center; */
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.navbar {
+  background-color: #83bcff;
+}
+
+.card {
+  background-color: #ECCBD9;
+}
+
+.post-link {
+  color: black
+}

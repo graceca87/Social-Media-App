@@ -8,6 +8,7 @@ import CreatePost from './components/CreatePost';
 import { Routes, Route } from 'react-router-dom';
 import ViewPosts from "./components/ViewPosts";
 import ViewPost from "./components/ViewPost";
+import "./app.css"
 
 function App() {
 
@@ -38,7 +39,7 @@ function App() {
     <>
       
       <Navbar name="Social" logout={logout} />
-      <div className="container">
+      <div className="App-header">
         {/* "if there is a message insert the AlertMessage component. If not, don't show it" */}
         {message ? (
           <AlertMessage
