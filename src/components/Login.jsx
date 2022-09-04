@@ -1,5 +1,6 @@
 import React from 'react'
 import  { useNavigate } from 'react-router-dom';
+import LoginCard from './LoginCard';
 
 export default function Login(props) {
 
@@ -7,15 +8,17 @@ export default function Login(props) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log(e);
+        console.log('Hello');
 
         let username = e.target.username.value
         let password = e.target.password.value
 
         let myHeaders = new Headers();
-        myHeaders.append('Authorization', 'Basic' + (`${username}:${password}`))
+        myHeaders.append(`'Authorization', 'Basic' + (${username}:${password})`)
 
-        let response = await fetch('http://127.0.0.1:5000//api/token', {headers:myHeaders});
+        let response = await fetch(`https://kekambas-blog.herokuapp.com//auth/me`,
+          { headers: myHeaders }
+        );
         if (response.ok){
         let data = await response.json();
      
@@ -36,29 +39,8 @@ export default function Login(props) {
 
     }
   return (
-    <>
-    <div class="row justify-content-center">
-        <div class="col-sm-6">
-            <div class="card mt-5">
-                <div class="card-body">
-                    <h4 className="text-center">Login</h4>
-                    <form onSubmit={handleSubmit}>
-                        <div className="form-group">
-
-                            <label htmlFor="username">Username</label>
-                            <input type='text' className='form-control' placeholder='Enter Username' name='username' />
-
-                            <label htmlFor="password">Password</label>
-                            <input type='password' className='form-control' placeholder='Enter Password' name='password' />
-
-                            <input type='submit' className='btn btn-primary w-100 mt-3' value='Register' />
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-    </>
+    <LoginCard 
+    handleSubmit = {handleSubmit}/>
     )
 }
 

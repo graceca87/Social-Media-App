@@ -37,7 +37,6 @@ function App() {
 
   return (
     <>
-      
       <Navbar name="Social" logout={logout} />
       <div className="App-header">
         {/* "if there is a message insert the AlertMessage component. If not, don't show it" */}

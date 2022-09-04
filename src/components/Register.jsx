@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
+import RegisterCard from './RegisterCard';
 
 export default function Register(props) {
 // navigate is a hook that returns a function that lets you navigate programatically
@@ -26,41 +27,26 @@ export default function Register(props) {
             password: password
         })
 
-    fetch('http://127.0.0.1:5000//api/users', {
-        method: 'POST',
-        headers: myHeaders,
-        body: formData
+    fetch("https://kekambas-blog.herokuapp.com/auth/users", {
+      method: "POST",
+      headers: myHeaders,
+      body: formData,
     })
-        .then(res => res.json())
-        .then(data => {
-            if (data.error){
-                console.error(data.error)
-            } else {
-                props.flashMessage('You have successfully registered', 'success')
-                navigate('/')
-            }
-        })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.error) {
+          console.error(data.error);
+        } else {
+          props.flashMessage("You have successfully registered", "success");
+          navigate("/");
+        }
+      });
     }
 
  }
 
     return (
-        <>
-            <h4 className="text-center">Register</h4>
-            <form onSubmit={handleSubmit}>
-                <div className="form-group">
-                    <label htmlFor="email">Email</label>
-                    <input type='text' className='form-control' placeholder='Enter Email' name='email' />
-                    <label htmlFor="username">Username</label>
-                    <input type='text' className='form-control' placeholder='Enter Username' name='username' />
-                    <label htmlFor="password">Password</label>
-                    <input type='password' className='form-control' placeholder='Enter Password' name='password' />
-                    <label htmlFor="confirmPass">Confirm Password</label>
-                    <input type='password' className='form-control' placeholder='Enter Password Again' name='confirmPass' />
-
-                    <input type='submit' className='btn btn-primary w-100 mt-3' value='Register' />
-                </div>
-            </form>
-        </>
+        <RegisterCard 
+        handleSubmit = {handleSubmit}/>
     )
 }
