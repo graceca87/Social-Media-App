@@ -13,12 +13,12 @@ export default function Navbar(props) {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              <Link className="nav-link" to="/view-posts">Home</Link>
-              <Link className="nav-link" to="/view-posts">Posts</Link>
               {/* If user is logged in show: */}
               {props.loggedIn ? (
                 <>
-                  <link className="nav-link" to="/create-post">Create Post</link>
+                console.log("you are officially logged in")
+                <Link className="nav-link" to="/">Home</Link>
+                  <Link className="nav-link" to="/create-post">Create Post</Link>
                   <Link className="nav-link" to="/" onClick={props.logout}>Logout</Link>
                 </>
                 // Else show: 

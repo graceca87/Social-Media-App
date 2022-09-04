@@ -8,18 +8,21 @@ export default function Login(props) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log('Hello');
 
         let username = e.target.username.value
         let password = e.target.password.value
 
         let myHeaders = new Headers();
-        myHeaders.append(`'Authorization', 'Basic' + (${username}:${password})`)
+        myHeaders.append('Authorization', 'Basic ' + btoa(`${username}:${password}`))
 
-        let response = await fetch(`https://kekambas-blog.herokuapp.com//auth/me`,
-          { headers: myHeaders }
+        let response = await fetch(
+          `https://kekambas-blog.herokuapp.com/auth/token`,
+
+          { method: "POST",
+           headers: myHeaders }
         );
         if (response.ok){
+
         let data = await response.json();
      
         //  Store the token and expiration in localStorage
@@ -30,10 +33,12 @@ export default function Login(props) {
         props.login();
 
         // Flash success message
-        props.flashMessage('You have successfully logged in', 'success');
+        props.flashMessage(`Welcome back, ${username}!`, 'success');
+        // once logged in send the user to homepage:
         navigate('/'); 
-    }
+        }
         else {
+            console.log("you are not logged in")
             props.flashMessage('Your username and/or password are incorrect', 'danger');
         }
 

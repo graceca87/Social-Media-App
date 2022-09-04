@@ -38,4 +38,4 @@ export default function ViewPosts() {
       </>
     );
 }
-// props come from when we render variables. 
+// *props are created when we render variables

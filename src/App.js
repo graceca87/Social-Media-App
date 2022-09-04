@@ -10,7 +10,7 @@ import ViewPosts from "./components/ViewPosts";
 import ViewPost from "./components/ViewPost";
 import "./app.css"
 
-function App() {
+function App(props) {
 
 
     const now = new Date();
@@ -37,28 +37,20 @@ function App() {
 
   return (
     <>
-      <Navbar name="Social" logout={logout} />
+      <Navbar name="Social" logout={this.logout} />
       <div className="App-header">
         {/* "if there is a message insert the AlertMessage component. If not, don't show it" */}
-        {message ? (
-          <AlertMessage
-            message={message}
-            category={category}
-            flashMessage={flashMessage}
-          />
+        {message ? (<AlertMessage message={message} category={category} flashMessage={flashMessage}/>
         ) : null}
         <Routes>
-          <Route
-            path="/register"
-            element={<Register flashMessage={flashMessage} />}
-          />
-          <Route
-            path="/login"
-            element={<Login flashMessage={flashMessage} login={login} />}
-          />
-          <Route path="/create-post" element={<CreatePost />} />
-          <Route path="/view-posts" element={<ViewPosts />} />
+          {/* "/" is home page that will show all posts. Don't need to be logged in */}
+          <Route path="/" element={<ViewPosts loggedIn={props.state.loggedIn} />} />
+          {/* if not logged in show: */}
+          <Route path="/register" element={<Register flashMessage={flashMessage} />}/>
+          <Route path="/login" element={<Login flashMessage={flashMessage} login={login} />}/>
           <Route path="/view-post/:id" element={<ViewPost />} />
+          {/* if user IS logged in show: */}
+          <Route path="/create-post" element={<CreatePost />} />
         </Routes>
       </div>
     </>

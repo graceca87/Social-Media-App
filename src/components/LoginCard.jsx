@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-export default function LoginCard(handleSubmit) {
+export default function LoginCard({handleSubmit}) {
   return (
     <>
       <div className="row justify-content-center">

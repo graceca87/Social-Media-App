@@ -1,8 +1,11 @@
 import React from 'react'
+import { useNavigate } from "react-router-dom";
 
 export default function CreatePost(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
+    // put navigate into arrow function so it is not immediately called.
+    let navigate= (e) => {e.useNavigate();
     let title = e.target.title.value;
     let body = e.target.body.value
     
@@ -12,10 +15,28 @@ export default function CreatePost(props) {
     myHeaders.append(`Authorization`, `Bearer ${myToken}`)
     myHeaders.append(`Authorization`, `Bearer ${myToken}`);
     let data = JSON.stringify({title, body})
+    // post request here (gets 2 args(url,data))
+    fetch("https://kekambas-blog.herokuapp.com/blog/posts", {
+      method: "POST",
+      headers: myHeaders,
+      body: data,
+    })
+      .then((res) => res.json())
+      .then((data) => {
 
-  }
-  return (
-    <form>
+        if (data.error) {
+          console.error(data.error);
+        } else {
+            console.log(data)
+          props.flashMessage("You have successfully created a post", "success");
+          navigate("/");
+        }
+      });
+    }
+  
+    return (
+    // attach onSubmit to form
+    <form onSubmit={handleSubmit}>
         <h3 className='text-center'>Create Post</h3>
             <div className="form-group">
                 <label htmlFor="title">Title</label>
@@ -27,4 +48,5 @@ export default function CreatePost(props) {
           
     </form>
   )
-}
+    }
+  }

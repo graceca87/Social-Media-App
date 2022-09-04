@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 export default function PostCard({post, listView=false}) {
 
   return (
-    <div class="row justify-content-center">
-      <div class="col-sm-6">
+    <div className="row justify-content-center">
+      <div className="col-sm-6">
         <div className="card mt-4">
           <div className="card-header">{post.author.username}</div>
           <div className="card-body">
