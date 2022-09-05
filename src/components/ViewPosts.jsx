@@ -32,6 +32,7 @@ export default function ViewPosts() {
         {posts ? posts.map((post) => (
               <PostCard
               listView={true}
+              allPostsLink={false}
               key={post.id} post={post}/>
             ))
           : "loading"}

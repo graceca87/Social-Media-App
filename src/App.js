@@ -12,12 +12,11 @@ import "./app.css"
 
 function App(props) {
 
-
     const now = new Date();
     // useState is the default value of your variable 
     const [message, setMessage] = useState(null); 
     const [category, setCategory] = useState(null);
-    const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') && new Date (localStorage.getItem('expiration')) > now))
+    const [loggedIn, setLoggedIn] = useState((localStorage.getItem('token') && new Date(localStorage.getItem('expiration')) > now) ? true : false)
 
     const flashMessage = (message, category) => {
         setMessage(message);
@@ -29,7 +28,6 @@ function App(props) {
     }
 
     const logout = () => {
-        setLoggedIn(false)
         localStorage.removeItem('token');
         localStorage.removeItem('expiration')
         setLoggedIn(false)
@@ -37,20 +35,21 @@ function App(props) {
 
   return (
     <>
-      <Navbar name="Social" logout={this.logout} />
+      <Navbar name="nav" logout={logout} />
       <div className="App-header">
         {/* "if there is a message insert the AlertMessage component. If not, don't show it" */}
         {message ? (<AlertMessage message={message} category={category} flashMessage={flashMessage}/>
-        ) : null}
+        ) : null} 
+         { loggedIn ? <h1>You are logged in </h1> : <h1>You are logged out</h1>}
         <Routes>
           {/* "/" is home page that will show all posts. Don't need to be logged in */}
-          <Route path="/" element={<ViewPosts loggedIn={props.state.loggedIn} />} />
+          <Route path="/" element={<ViewPosts loggedIn={loggedIn} />} />
           {/* if not logged in show: */}
           <Route path="/register" element={<Register flashMessage={flashMessage} />}/>
           <Route path="/login" element={<Login flashMessage={flashMessage} login={login} />}/>
           <Route path="/view-post/:id" element={<ViewPost />} />
           {/* if user IS logged in show: */}
-          <Route path="/create-post" element={<CreatePost />} />
+          <Route path="/create-post" element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn}/>} />
         </Routes>
       </div>
     </>

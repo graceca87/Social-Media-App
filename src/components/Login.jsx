@@ -8,6 +8,7 @@ export default function Login(props) {
 
     const handleSubmit = async e => {
         e.preventDefault();
+        console.log(e)
 
         let username = e.target.username.value
         let password = e.target.password.value
@@ -31,6 +32,7 @@ export default function Login(props) {
 
         // change the loggedIn state to true
         props.login();
+       
 
         // Flash success message
         props.flashMessage(`Welcome back, ${username}!`, 'success');
@@ -38,7 +40,6 @@ export default function Login(props) {
         navigate('/'); 
         }
         else {
-            console.log("you are not logged in")
             props.flashMessage('Your username and/or password are incorrect', 'danger');
         }
 

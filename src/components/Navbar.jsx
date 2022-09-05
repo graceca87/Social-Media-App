@@ -13,21 +13,16 @@ export default function Navbar(props) {
           </button>
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div className="navbar-nav">
-              {/* If user is logged in show: */}
-              {props.loggedIn ? (
+              {/* Need to figure out how to only show components if user is logged in : */}
+
                 <>
-                console.log("you are officially logged in")
                 <Link className="nav-link" to="/">Home</Link>
-                  <Link className="nav-link" to="/create-post">Create Post</Link>
-                  <Link className="nav-link" to="/" onClick={props.logout}>Logout</Link>
+                <Link className="nav-link" to="/create-post">Create Post</Link>
+                <Link className="nav-link" to="/" onClick={props.logout}>Logout</Link>
+                <Link className="nav-link" to="/register"> Register</Link>
+                <Link className="nav-link" to="/login">Login</Link>
                 </>
-                // Else show: 
-              ) : (
-                <>
-                  <Link className="nav-link" to="/register"> Register</Link>
-                  <Link className="nav-link" to="/login">Login</Link>
-                </>
-              )}
+
             </div>
           </div>
         </div>
