@@ -17,5 +17,10 @@
 }
 
 .post-link {
-  color: black
+  color: rgb(86, 94, 235);
+  font-size: medium
+}
+
+.card-text {
+  font-size: small
 }

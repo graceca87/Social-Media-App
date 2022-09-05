@@ -24,7 +24,6 @@ export default function ViewPosts() {
     getPosts()
     }, [])
     // dependency array is a list of variables to watch to see if any of them change
-    console.log(posts)
     return (
       <>
 

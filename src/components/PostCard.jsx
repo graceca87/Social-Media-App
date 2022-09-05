@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Datetime from "react-datetime"
+
 
 
 export default function PostCard({post, listView=false, allPostsLink=true}) {
@@ -10,13 +10,13 @@ export default function PostCard({post, listView=false, allPostsLink=true}) {
         <div className="card mt-4">
           <div className="card-header">{post.author.username}</div>
           <div className="card-body">
-            <h5 className="card-title">{post.title}</h5>
-            <h5 className="card-title">{post.content}</h5>
+            <h2 className="card-title">{post.title}</h2>
+            <h5 className="card-title mt-3">{post.content}</h5>
+            <p className="card-text mt-4">created {post.date_created}</p>
             {/* link to view specific post (only show when on homepage) */}
-            {listView && <Link to={`/view-post/${post.id}`} id="post-link">view post</Link>}
+            {listView && <Link className="post-link" to={`/view-post/${post.id}`} id="post-link">view post</Link>}
             {/* link to go back to homepage. Only show when on individual post */}
-            {allPostsLink && <Link to={`/`}>back to posts</Link>}
-            <p className="card-text">created {post.date_created}</p>
+            {allPostsLink && <Link className="post-link" to={`/`}>back</Link>}
           </div>
         </div>
       </div>

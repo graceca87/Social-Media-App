@@ -28,7 +28,7 @@ export default function CreatePost(props) {
 
     // post request here (gets 2 args(url,data))
     fetch("https://kekambas-blog.herokuapp.com/blog/posts", {
-      method: "POST",
+      method: "PUT",
       headers: myHeaders,
       body: data,
     })

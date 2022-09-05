@@ -8,7 +8,6 @@ export default function Login(props) {
 
     const handleSubmit = async e => {
         e.preventDefault();
-        console.log(e)
 
         let username = e.target.username.value
         let password = e.target.password.value
@@ -24,20 +23,27 @@ export default function Login(props) {
         );
         if (response.ok){
 
-        let data = await response.json();
-     
-        //  Store the token and expiration in localStorage
-        localStorage.setItem('token', data.token)
-        localStorage.setItem('expiration', data.token_expiration);
+          let data = await response.json();
+		  console.log(data)
+      
+          //  Store the token and expiration in localStorage
+          localStorage.setItem('token', data.token)
+          localStorage.setItem('expiration', data.token_expiration);
 
-        // change the loggedIn state to true
-        props.login();
-       
+          // change the loggedIn state to true
+          props.login();
+		
+          if (props.loggedIn) 
 
-        // Flash success message
-        props.flashMessage(`Welcome back, ${username}!`, 'success');
-        // once logged in send the user to homepage:
-        navigate('/'); 
+          {console.log('you are logged in!!!!')}
+          else {
+			console.log("you aren't actually logged in")}
+        
+
+          // Flash success message
+          props.flashMessage(`Welcome back, ${username}!`, 'success');
+          // once logged in send the user to homepage:
+          navigate('/'); 
         }
         else {
             props.flashMessage('Your username and/or password are incorrect', 'danger');

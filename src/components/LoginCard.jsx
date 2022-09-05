@@ -15,7 +15,7 @@ export default function LoginCard({handleSubmit}) {
                     <input type="text" className="form-control" placeholder="Enter Username" name="username"/>
                     <label htmlFor="password">Password</label>
                     <input type="password" className="form-control" placeholder="Enter Password" name="password" />
-                    <input type="submit"className="btn btn-primary w-100 mt-3"value="Register" />
+                    <input type="submit"className="btn btn-primary w-100 mt-3"value="Log In" />
                     </div>
                 </form>
             </div>
