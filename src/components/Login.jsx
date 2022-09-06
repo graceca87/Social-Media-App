@@ -24,7 +24,7 @@ export default function Login(props) {
         if (response.ok){
 
           let data = await response.json();
-		  console.log(data)
+		      console.log(data)
       
           //  Store the token and expiration in localStorage
           localStorage.setItem('token', data.token)
@@ -32,15 +32,7 @@ export default function Login(props) {
 
           // change the loggedIn state to true
           props.login();
-		
-          if (props.loggedIn) 
-
-          {console.log('you are logged in!!!!')}
-          else {
-			console.log("you aren't actually logged in")}
-        
-
-          // Flash success message
+                  // Flash success message
           props.flashMessage(`Welcome back, ${username}!`, 'success');
           // once logged in send the user to homepage:
           navigate('/'); 
@@ -48,11 +40,15 @@ export default function Login(props) {
         else {
             props.flashMessage('Your username and/or password are incorrect', 'danger');
         }
-
+        // make sure you are logged in:
+        // props.loggedIn ? (
+        //   console.log("you are logged in")
+        //                 ) : (
+        //   console.log("you are not actually logged in")
+        //                 )
     }
   return (
     <LoginCard 
     handleSubmit = {handleSubmit}/>
     )
 }
-

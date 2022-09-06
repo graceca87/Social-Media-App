@@ -9,6 +9,9 @@ import { Routes, Route } from 'react-router-dom';
 import ViewPosts from "./components/ViewPosts";
 import ViewPost from "./components/ViewPost";
 import "./app.css"
+import EditPost from "./components/EditPost";
+
+
 
 function App(props) {
 
@@ -50,6 +53,7 @@ function App(props) {
           <Route path="/view-post/:id" element={<ViewPost />} />
           {/* if user IS logged in show: */}
           <Route path="/create-post" element={<CreatePost flashMessage={flashMessage} loggedIn={loggedIn}/>} />
+          <Route path="/edit-post/:id" element={<EditPost />} />
         </Routes>
       </div>
     </>

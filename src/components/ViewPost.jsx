@@ -5,7 +5,7 @@ import PostCard from "./PostCard";
 export default function Post(props) {
   // const [post_id, setPostId] = useState(1);
   const [post, setPost] = useState()
-    const { id } = useParams();
+  const { id } = useParams();
   console.log(id)
 // useEffect happens when you first load the page and it looks at depenencies for changes
     useEffect(() => {

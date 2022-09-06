@@ -56,9 +56,6 @@ export default function CreatePost(props) {
 						<input type="text" className="form-control" placeholder="Enter Title Here" name="title"/>
 						<label htmlFor="content">Body</label>
 						<input type='text' className='form-control' placeholder='Enter Body Here' name='content' />
-
-						{/* <label htmlFor="body" className="form-label">Body</label>
-						<textarea className="form-control" id="post-body" rows="3"></textarea> */}
 						<input type="submit" className="btn btn-primary w-100 mt-3" value="Create Post"/>
 					</div>
 				</form>

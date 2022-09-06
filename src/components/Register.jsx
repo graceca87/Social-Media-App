@@ -6,17 +6,21 @@ import RegisterCard from './RegisterCard';
 export default function Register(props) {
 // navigate is a hook that returns a function that lets you navigate programatically
     let navigate = useNavigate();
+    
     const handleSubmit = e => {
         e.preventDefault();
         // console.log(e)
 
-        // Check that the password matches
+    // Check that the password matches
     let password = e.target.password.value;
     let confirmPass = e.target.confirmPass.value;
+
+    // if passwords don't match flash message:
     if (password !== confirmPass){
         props.flashMessage('Your passwords do not match', 'danger')
     } else {
         console.log('Passwords do match!')
+       
         // set up request to Flask App. Headers is a built in method
         let myHeaders = new Headers();
         myHeaders.append('Content-Type', 'application/json');
@@ -38,9 +42,9 @@ export default function Register(props) {
         if (data.error) {
           console.error(data.error);
         } else {
-            console.log(data)
+          console.log(data)
           props.flashMessage("You have successfully registered", "success");
-          navigate("/");
+          navigate("/login");
         }
       });
     }
